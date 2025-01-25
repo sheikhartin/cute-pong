@@ -11,6 +11,7 @@ size = Vector2(102, 42)
 position = Vector2(640, 360)
 motion_mode = 1
 script = ExtResource("1_lnirb")
+shrink_delay = 2.0
 
 [node name="PaddleVisual" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -23,3 +24,8 @@ shape = SubResource("RectangleShape2D_u444q")
 [node name="PaddleHitSound" type="AudioStreamPlayer2D" parent="."]
 visible = false
 stream = ExtResource("3_n2yfo")
+
+[node name="ShrinkTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="timeout" from="ShrinkTimer" to="." method="_on_shrink_timer_timeout"]
