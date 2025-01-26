@@ -3,8 +3,8 @@ extends Resource
 
 const SAVE_PATH: String = "user://game_profile.tres"
 
-@export var music_volume: float = 100.0
-@export var sfx_volume: float = 100.0
+@export var music_volume: float = 10.0
+@export var sfx_volume: float = 10.0
 
 @export var match_history: Array[Dictionary] = []
 
