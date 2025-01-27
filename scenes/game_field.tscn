@@ -1,0 +1,172 @@
+[gd_scene load_steps=14 format=3 uid="uid://dn5r3oe4k6b0m"]
+
+[ext_resource type="Texture2D" uid="uid://c261a3kcxtcnu" path="res://assets/graphics/arenas/green-arena.png" id="1_7aptf"]
+[ext_resource type="Script" path="res://scripts/game_field.gd" id="1_hwdun"]
+[ext_resource type="PackedScene" uid="uid://ba0tei3pymwl5" path="res://scenes/entities/ball.tscn" id="1_iemkk"]
+[ext_resource type="PackedScene" uid="uid://bhv3h4ry1asu7" path="res://scenes/entities/paddle.tscn" id="2_7ssy6"]
+[ext_resource type="AudioStream" uid="uid://br2ysxgsl3ub2" path="res://assets/audio/sfx/instant-win.wav" id="2_knf4o"]
+[ext_resource type="Texture2D" uid="uid://dsl3irguydk7" path="res://assets/graphics/paddles/yellow-paddle.png" id="3_aeetf"]
+[ext_resource type="AudioStream" uid="uid://yii1s0sgeuja" path="res://assets/audio/sfx/ball-tap.wav" id="6_d4c6e"]
+[ext_resource type="Theme" uid="uid://caj8hqtpkb2ng" path="res://assets/default_theme.tres" id="8_57nwt"]
+[ext_resource type="AudioStream" uid="uid://1hmbgx1jo8l1" path="res://assets/audio/music/roa-twilight.mp3" id="9_3d13n"]
+[ext_resource type="PackedScene" uid="uid://cwiopwn3xcwtt" path="res://scenes/game_pause_controller.tscn" id="9_vvusq"]
+[ext_resource type="AudioStream" uid="uid://ciila5p1dx1kd" path="res://assets/audio/sfx/heavy-sword-smashes-metal.wav" id="11_cqprq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8t8cq"]
+size = Vector2(1296, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s62ed"]
+size = Vector2(87, 720)
+
+[node name="GameField" type="Node2D"]
+script = ExtResource("1_hwdun")
+victory_score = 2
+
+[node name="ArenaTexture" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+position = Vector2(640, 360)
+texture = ExtResource("1_7aptf")
+
+[node name="BackgroundMusicPlayer" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+stream = ExtResource("9_3d13n")
+autoplay = true
+
+[node name="GamePauseController" parent="." instance=ExtResource("9_vvusq")]
+z_index = 1
+
+[node name="Ball" parent="." instance=ExtResource("1_iemkk")]
+shrink_delay = 5.0
+
+[node name="Paddles" type="Node2D" parent="."]
+
+[node name="PlayerLeftPaddle" parent="Paddles" groups=["Paddles"] instance=ExtResource("2_7ssy6")]
+unique_name_in_owner = true
+position = Vector2(100, 360)
+shrink_delay = 10.0
+
+[node name="PlayerRightPaddle" parent="Paddles" groups=["Paddles"] instance=ExtResource("2_7ssy6")]
+unique_name_in_owner = true
+position = Vector2(1180, 360)
+player = 3
+custom_texture = ExtResource("3_aeetf")
+shrink_delay = 10.0
+
+[node name="Boundaries" type="StaticBody2D" parent="." groups=["Boundaries"]]
+
+[node name="CeilingBarrier" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2(640, -32)
+shape = SubResource("RectangleShape2D_8t8cq")
+
+[node name="FloorBarrier" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2(640, 752)
+shape = SubResource("RectangleShape2D_8t8cq")
+
+[node name="BoundaryCollisionSound" type="AudioStreamPlayer2D" parent="Boundaries"]
+unique_name_in_owner = true
+visible = false
+stream = ExtResource("6_d4c6e")
+volume_db = 12.0
+
+[node name="ScoreSystem" type="Node2D" parent="."]
+
+[node name="PlayerLeftNet" type="Area2D" parent="ScoreSystem"]
+
+[node name="LeftGoalTrigger" type="CollisionShape2D" parent="ScoreSystem/PlayerLeftNet"]
+position = Vector2(-44.5, 360)
+shape = SubResource("RectangleShape2D_s62ed")
+
+[node name="PlayerRightNet" type="Area2D" parent="ScoreSystem"]
+position = Vector2(1368, 0)
+
+[node name="RightGoalTrigger" type="CollisionShape2D" parent="ScoreSystem/PlayerRightNet"]
+position = Vector2(-44.5, 360)
+shape = SubResource("RectangleShape2D_s62ed")
+
+[node name="GoalScoredSound" type="AudioStreamPlayer2D" parent="ScoreSystem"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(-44.5, 360)
+stream = ExtResource("2_knf4o")
+
+[node name="ScoreBoard" type="HBoxContainer" parent="ScoreSystem"]
+offset_left = 531.0
+offset_right = 744.0
+offset_bottom = 90.0
+theme = ExtResource("8_57nwt")
+alignment = 1
+
+[node name="PlayerLeftScoreDisplay" type="Label" parent="ScoreSystem/ScoreBoard"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 65
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerRightScoreDisplay" type="Label" parent="ScoreSystem/ScoreBoard"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 65
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameOverScreenOverlay" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+
+[node name="ResultsPanel" type="VBoxContainer" parent="GameOverScreenOverlay"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -322.0
+offset_top = -128.0
+offset_right = 318.0
+offset_bottom = 142.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="MatchResultDisplay" type="Label" parent="GameOverScreenOverlay/ResultsPanel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 60
+text = "You won!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RematchButton" type="Button" parent="GameOverScreenOverlay/ResultsPanel"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 35
+text = "Play again"
+
+[node name="ExitToMainMenuButton" type="Button" parent="GameOverScreenOverlay/ResultsPanel"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 35
+text = "Back to menu"
+
+[node name="EndMatchJingle" type="AudioStreamPlayer2D" parent="GameOverScreenOverlay"]
+unique_name_in_owner = true
+visible = false
+stream = ExtResource("11_cqprq")
+volume_db = 6.0
+
+[connection signal="body_entered" from="ScoreSystem/PlayerLeftNet" to="." method="_on_player_left_net_body_entered"]
+[connection signal="body_entered" from="ScoreSystem/PlayerRightNet" to="." method="_on_player_right_net_body_entered"]
+[connection signal="pressed" from="GameOverScreenOverlay/ResultsPanel/RematchButton" to="." method="_on_rematch_button_pressed"]
+[connection signal="pressed" from="GameOverScreenOverlay/ResultsPanel/ExitToMainMenuButton" to="." method="_on_exit_to_main_menu_button_pressed"]
