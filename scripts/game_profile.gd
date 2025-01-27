@@ -6,6 +6,12 @@ const SAVE_PATH: String = "user://game_profile.tres"
 @export var music_volume: float = 10.0
 @export var sfx_volume: float = 10.0
 
+@export
+var battle_mode: GameField.BattleMode = GameField.BattleMode.PLAYER_VS_COMPUTER
+
+@export var arena_texture_path: String
+@export var ball_texture_path: String
+
 @export var match_history: Array[Dictionary] = []
 
 
@@ -23,5 +29,10 @@ func load_profile() -> void:
 
 	music_volume = loaded_settings.music_volume
 	sfx_volume = loaded_settings.sfx_volume
+
+	battle_mode = loaded_settings.battle_mode
+
+	arena_texture_path = loaded_settings.arena_texture_path
+	ball_texture_path = loaded_settings.ball_texture_path
 
 	match_history = loaded_settings.match_history
