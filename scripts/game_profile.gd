@@ -9,6 +9,8 @@ const SAVE_PATH: String = "user://game_profile.tres"
 @export
 var battle_mode: GameField.BattleMode = GameField.BattleMode.PLAYER_VS_COMPUTER
 
+@export var win_tally: int = 3
+
 @export var arena_texture_path: String
 @export var ball_texture_path: String
 
@@ -31,6 +33,8 @@ func load_profile() -> void:
 	sfx_volume = loaded_settings.sfx_volume
 
 	battle_mode = loaded_settings.battle_mode
+
+	win_tally = loaded_settings.win_tally
 
 	arena_texture_path = loaded_settings.arena_texture_path
 	ball_texture_path = loaded_settings.ball_texture_path

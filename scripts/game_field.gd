@@ -28,6 +28,7 @@ var _player_right_score: int = 0
 @onready var goal_scored_sound: AudioStreamPlayer2D = %GoalScoredSound
 @onready var end_match_jingle: AudioStreamPlayer2D = %EndMatchJingle
 
+@onready var game_pause_controller: Node2D = $GamePauseController
 @onready var game_over_screen_overlay: CanvasLayer = %GameOverScreenOverlay
 @onready var match_result_display: Label = %MatchResultDisplay
 
@@ -51,7 +52,12 @@ func _ready() -> void:
 			player_left_paddle.player = Paddle.Player.PLAYER_A_BOT
 			player_right_paddle.player = Paddle.Player.PLAYER_B_BOT
 
+	victory_score = _game_profile.win_tally
+
 	%ArenaTexture.texture = load(_game_profile.arena_texture_path)
+
+	%PlayerLeftPaddle.prepare_paddle_for_play()
+	%PlayerRightPaddle.prepare_paddle_for_play()
 
 	var ball_texture: Texture2D = load(_game_profile.ball_texture_path)
 	if ball_texture:
@@ -119,6 +125,7 @@ func _finalize_game_session() -> void:
 
 	get_tree().paused = true
 	game_over_screen_overlay.visible = true
+	game_pause_controller.set_game_ended(true)
 
 	var victory_message: String
 	if _player_left_score > _player_right_score:

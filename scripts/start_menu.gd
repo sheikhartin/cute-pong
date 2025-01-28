@@ -59,6 +59,8 @@ func _on_play_game_button_pressed() -> void:
 	if default_battle_mode_index != -1:
 		%BattleModeOption.select(default_battle_mode_index)
 
+	%WinTally.value = _game_profile.win_tally
+
 	for arena_name in ARENA_TEXTURES.keys():
 		%ArenaTextureOption.add_item(arena_name)
 
@@ -132,6 +134,8 @@ func _on_start_button_pressed() -> void:
 	_game_profile.battle_mode = BATTLE_MODES[%BattleModeOption.get_item_text(
 		%BattleModeOption.selected
 	)]
+
+	_game_profile.win_tally = %WinTally.value
 
 	_game_profile.arena_texture_path = ARENA_TEXTURES[
 		%ArenaTextureOption.get_item_text(%ArenaTextureOption.selected)

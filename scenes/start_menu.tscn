@@ -68,81 +68,78 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -307.0
-offset_top = 189.0
+offset_top = 56.0
 offset_right = 323.0
-offset_bottom = 664.0
+offset_bottom = 712.0
 grow_horizontal = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 
 [node name="HeaderLabel" type="Label" parent="PreGameMenuLayout"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
 theme_override_font_sizes/font_size = 90
 text = "Game Setup"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BattleModeSelectionLayout" type="HBoxContainer" parent="PreGameMenuLayout"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="BattleModeLabel" type="Label" parent="PreGameMenuLayout/BattleModeSelectionLayout"]
+[node name="BattleModeLabel" type="Label" parent="PreGameMenuLayout"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 35
-text = "Mode:"
+text = "Mode"
 horizontal_alignment = 1
 
-[node name="BattleModeOption" type="OptionButton" parent="PreGameMenuLayout/BattleModeSelectionLayout"]
+[node name="BattleModeOption" type="OptionButton" parent="PreGameMenuLayout"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+alignment = 1
+
+[node name="WinTallyLabel" type="Label" parent="PreGameMenuLayout"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Win tally"
+horizontal_alignment = 1
+
+[node name="WinTally" type="SpinBox" parent="PreGameMenuLayout"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 1.0
+max_value = 50.0
+value = 3.0
+rounded = true
+alignment = 1
+
+[node name="ArenaTextureLabel" type="Label" parent="PreGameMenuLayout"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Arena"
+horizontal_alignment = 1
+
+[node name="ArenaTextureOption" type="OptionButton" parent="PreGameMenuLayout"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+alignment = 1
+
+[node name="BallTextureLabel" type="Label" parent="PreGameMenuLayout"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Ball"
+horizontal_alignment = 1
+
+[node name="BallTextureOption" type="OptionButton" parent="PreGameMenuLayout"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-theme_override_font_sizes/font_size = 30
-alignment = 1
-
-[node name="ArenaSelectionLayout" type="HBoxContainer" parent="PreGameMenuLayout"]
-layout_mode = 2
-size_flags_vertical = 6
-
-[node name="ArenaTextureLabel" type="Label" parent="PreGameMenuLayout/ArenaSelectionLayout"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-theme_override_font_sizes/font_size = 35
-text = "Arena:"
-horizontal_alignment = 1
-
-[node name="ArenaTextureOption" type="OptionButton" parent="PreGameMenuLayout/ArenaSelectionLayout"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 6
-theme_override_font_sizes/font_size = 30
-alignment = 1
-
-[node name="BallSelectionLayout" type="HBoxContainer" parent="PreGameMenuLayout"]
-layout_mode = 2
-size_flags_vertical = 6
-
-[node name="BallTextureLabel" type="Label" parent="PreGameMenuLayout/BallSelectionLayout"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-theme_override_font_sizes/font_size = 35
-text = "Ball:"
-horizontal_alignment = 1
-
-[node name="BallTextureOption" type="OptionButton" parent="PreGameMenuLayout/BallSelectionLayout"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 6
 theme_override_font_sizes/font_size = 30
 alignment = 1
 
