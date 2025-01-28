@@ -56,6 +56,24 @@ func _ready() -> void:
 
 	%ArenaTexture.texture = load(_game_profile.arena_texture_path)
 
+	var arena_texture_name: String = (
+		_game_profile.arena_texture_path.get_file().get_basename()
+	)
+	if arena_texture_name == "blue-arena":
+		player_left_paddle.get_node("PaddleVisual").texture = load(
+			"res://assets/graphics/paddles/yellow-paddle.png"
+		)
+		player_right_paddle.get_node("PaddleVisual").texture = load(
+			"res://assets/graphics/paddles/grey-paddle.png"
+		)
+	else:
+		player_left_paddle.get_node("PaddleVisual").texture = load(
+			"res://assets/graphics/paddles/blue-paddle.png"
+		)
+		player_right_paddle.get_node("PaddleVisual").texture = load(
+			"res://assets/graphics/paddles/yellow-paddle.png"
+		)
+
 	%PlayerLeftPaddle.prepare_paddle_for_play()
 	%PlayerRightPaddle.prepare_paddle_for_play()
 

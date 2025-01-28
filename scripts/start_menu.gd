@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-const SMALL_PREVIEW_SIZE: Vector2i = Vector2i(16, 16)
+const SMALL_PREVIEW_SIZE: Vector2i = Vector2i(20, 20)
 
 @onready var start_screen_layout: VBoxContainer = %StartScreenLayout
 @onready var pre_game_menu_layout: VBoxContainer = %PreGameMenuLayout
@@ -14,10 +14,10 @@ const SMALL_PREVIEW_SIZE: Vector2i = Vector2i(16, 16)
 @onready var sfx_volume_slider: HSlider = %SFXVolumeSlider
 
 const BATTLE_MODES: Dictionary = {
-	"Human vs. computer": GameField.BattleMode.PLAYER_VS_COMPUTER,
-	"Computer vs. human": GameField.BattleMode.COMPUTER_VS_PLAYER,
-	"Human vs. human": GameField.BattleMode.PLAYER_VS_PLAYER,
-	"Computer vs. computer": GameField.BattleMode.COMPUTER_VS_COMPUTER,
+	"Human 👤 vs. computer 🤖": GameField.BattleMode.PLAYER_VS_COMPUTER,
+	"Computer 🤖 vs. human 👤": GameField.BattleMode.COMPUTER_VS_PLAYER,
+	"Human 👤 vs. human 👤": GameField.BattleMode.PLAYER_VS_PLAYER,
+	"Computer 🤖 vs. computer 🤖": GameField.BattleMode.COMPUTER_VS_COMPUTER,
 }
 
 const ARENA_TEXTURES: Dictionary = {
@@ -31,6 +31,14 @@ const BALL_TEXTURES: Dictionary = {
 	"Red alt.": "res://assets/graphics/balls/small-red-ball-alt.png",
 	"Blue": "res://assets/graphics/balls/large-blue-ball.png",
 	"Blue alt.": "res://assets/graphics/balls/small-blue-ball-alt.png",
+	"Green circle": "res://assets/graphics/balls/green-body-circle.png",
+	"Green square": "res://assets/graphics/balls/green-body-square.png",
+	"Purple circle": "res://assets/graphics/balls/purple-body-circle.png",
+	"Purple square": "res://assets/graphics/balls/purple-body-square.png",
+	"Pink circle": "res://assets/graphics/balls/pink-body-circle.png",
+	"Pink square": "res://assets/graphics/balls/pink-body-square.png",
+	"Yellow circle": "res://assets/graphics/balls/yellow-body-circle.png",
+	"Yellow square": "res://assets/graphics/balls/yellow-body-square.png",
 }
 
 var _game_profile: GameProfile = GameProfile.new()
