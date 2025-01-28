@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhv3h4ry1asu7"]
+
+[ext_resource type="Script" path="res://scripts/entities/paddle.gd" id="1_lnirb"]
+[ext_resource type="Texture2D" uid="uid://dkggfvuhqw02o" path="res://assets/graphics/paddles/blue-paddle.png" id="2_c2ve8"]
+[ext_resource type="AudioStream" uid="uid://cpn5rcugxsvg7" path="res://assets/audio/sfx/arcade-game-jump.wav" id="3_n2yfo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u444q"]
+size = Vector2(102, 42)
+
+[node name="Paddle" type="CharacterBody2D"]
+position = Vector2(640, 360)
+motion_mode = 1
+script = ExtResource("1_lnirb")
+shrink_delay = 2.0
+
+[node name="PaddleVisual" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.400943, 0.400943)
+texture = ExtResource("2_c2ve8")
+
+[node name="PaddleHitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_u444q")
+
+[node name="PaddleHitSound" type="AudioStreamPlayer2D" parent="."]
+visible = false
+stream = ExtResource("3_n2yfo")
+
+[node name="ShrinkTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="timeout" from="ShrinkTimer" to="." method="_on_shrink_timer_timeout"]

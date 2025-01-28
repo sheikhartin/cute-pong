@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://ba0tei3pymwl5"]
+
+[ext_resource type="Script" path="res://scripts/entities/ball.gd" id="1_h4acj"]
+[ext_resource type="Texture2D" uid="uid://cspbgpiwhjjpb" path="res://assets/graphics/balls/pink-body-circle.png" id="1_tnc4t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e8q0f"]
+radius = 32.1403
+
+[node name="Ball" type="CharacterBody2D"]
+position = Vector2(640, 360)
+motion_mode = 1
+script = ExtResource("1_h4acj")
+shrink_delay = 2.0
+
+[node name="BallVisual" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_tnc4t")
+
+[node name="BallHitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_e8q0f")
+
+[node name="ShrinkTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="ShrinkTimer" to="." method="_on_shrink_timer_timeout"]

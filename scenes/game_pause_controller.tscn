@@ -1,0 +1,78 @@
+[gd_scene load_steps=9 format=3 uid="uid://cwiopwn3xcwtt"]
+
+[ext_resource type="Script" path="res://scripts/game_pause_controller.gd" id="1_wq2gd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i2j3e"]
+bg_color = Color(1, 0.286275, 0.619608, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 10.0
+expand_margin_top = 5.0
+expand_margin_right = 10.0
+expand_margin_bottom = 5.0
+shadow_color = Color(0, 0, 0, 0.27451)
+shadow_size = 55
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nfg8s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hd6sy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ed1eg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jclss"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0ngo0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r5y43"]
+
+[node name="GamePauseController" type="Node2D"]
+process_mode = 3
+position = Vector2(640, 360)
+script = ExtResource("1_wq2gd")
+
+[node name="PauseMenuLayout" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="PauseText" type="Label" parent="PauseMenuLayout"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 160
+theme_override_styles/normal = SubResource("StyleBoxFlat_i2j3e")
+text = "Paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ControlButtonsLayout" type="HBoxContainer" parent="PauseMenuLayout"]
+layout_mode = 2
+size_flags_vertical = 6
+alignment = 1
+
+[node name="ExitButton" type="Button" parent="PauseMenuLayout/ControlButtonsLayout"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 35
+theme_override_styles/hover = SubResource("StyleBoxEmpty_nfg8s")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hd6sy")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ed1eg")
+text = "Exit ↩"
+
+[node name="RestartButton" type="Button" parent="PauseMenuLayout/ControlButtonsLayout"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 35
+theme_override_styles/hover = SubResource("StyleBoxEmpty_jclss")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_0ngo0")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_r5y43")
+text = "Restart ⟲"
+
+[connection signal="pressed" from="PauseMenuLayout/ControlButtonsLayout/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="PauseMenuLayout/ControlButtonsLayout/RestartButton" to="." method="_on_restart_button_pressed"]

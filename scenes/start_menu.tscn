@@ -1,0 +1,247 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgrp10phh6qao"]
+
+[ext_resource type="Script" path="res://scripts/start_menu.gd" id="1_hk0m5"]
+[ext_resource type="Texture2D" uid="uid://btx5ncemswkk6" path="res://assets/graphics/ui/main-menu-background.png" id="1_ld0t7"]
+[ext_resource type="AudioStream" uid="uid://7l34ly3ryk7" path="res://assets/audio/music/roa-like-a-dream.mp3" id="4_d6vm0"]
+
+[node name="StartMenu" type="CanvasLayer"]
+script = ExtResource("1_hk0m5")
+
+[node name="MenuBackdrop" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(640, 360)
+texture = ExtResource("1_ld0t7")
+
+[node name="BackgroundMusicPlayer" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_d6vm0")
+autoplay = true
+
+[node name="StartScreenLayout" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -287.0
+offset_top = 123.0
+offset_right = 287.0
+offset_bottom = 697.0
+grow_horizontal = 2
+
+[node name="HeaderLabel" type="Label" parent="StartScreenLayout"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 90
+text = "Cute Pong"
+
+[node name="PlayGameButton" type="Button" parent="StartScreenLayout"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 60
+text = "Play"
+
+[node name="ConfigButton" type="Button" parent="StartScreenLayout"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 60
+text = "Settings"
+
+[node name="GameHistoryButton" type="Button" parent="StartScreenLayout"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 60
+text = "History"
+
+[node name="QuitGameButton" type="Button" parent="StartScreenLayout"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 60
+text = "Exit"
+
+[node name="PreGameMenuLayout" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -307.0
+offset_top = 56.0
+offset_right = 323.0
+offset_bottom = 712.0
+grow_horizontal = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="HeaderLabel" type="Label" parent="PreGameMenuLayout"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 90
+text = "Game Setup"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BattleModeLabel" type="Label" parent="PreGameMenuLayout"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Mode"
+horizontal_alignment = 1
+
+[node name="BattleModeOption" type="OptionButton" parent="PreGameMenuLayout"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+alignment = 1
+
+[node name="WinTallyLabel" type="Label" parent="PreGameMenuLayout"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Win tally"
+horizontal_alignment = 1
+
+[node name="WinTally" type="SpinBox" parent="PreGameMenuLayout"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 1.0
+max_value = 50.0
+value = 3.0
+rounded = true
+alignment = 1
+
+[node name="ArenaTextureLabel" type="Label" parent="PreGameMenuLayout"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Arena"
+horizontal_alignment = 1
+
+[node name="ArenaTextureOption" type="OptionButton" parent="PreGameMenuLayout"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+alignment = 1
+
+[node name="BallTextureLabel" type="Label" parent="PreGameMenuLayout"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Ball"
+horizontal_alignment = 1
+
+[node name="BallTextureOption" type="OptionButton" parent="PreGameMenuLayout"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 30
+alignment = 1
+
+[node name="StartButton" type="Button" parent="PreGameMenuLayout"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 45
+text = "Go >"
+
+[node name="GameSettingsLayout" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -304.0
+offset_top = 189.0
+offset_right = 328.0
+offset_bottom = 445.0
+grow_horizontal = 2
+
+[node name="HeaderLabel" type="Label" parent="GameSettingsLayout"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 90
+text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicVolumeLabel" type="Label" parent="GameSettingsLayout"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Music volume"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicVolumeSlider" type="HSlider" parent="GameSettingsLayout"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 10.0
+value = 10.0
+
+[node name="SFXVolumeLabel" type="Label" parent="GameSettingsLayout"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Sound effects volume"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SFXVolumeSlider" type="HSlider" parent="GameSettingsLayout"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 10.0
+value = 10.0
+
+[node name="HistoryDisplayLayout" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -373.0
+offset_top = 189.0
+offset_right = 381.0
+offset_bottom = 659.0
+grow_horizontal = 2
+
+[node name="HeaderLabel" type="Label" parent="HistoryDisplayLayout"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 90
+text = "Game History"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HistoryDisplayLayout"]
+custom_minimum_size = Vector2(0, 350)
+layout_mode = 2
+
+[node name="HistoryList" type="VBoxContainer" parent="HistoryDisplayLayout/ScrollContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 350)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="MainMenuReturnButton" type="Button" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_right = 304.0
+offset_bottom = 94.0
+theme_override_font_sizes/font_size = 65
+text = "< Back"
+flat = true
+
+[connection signal="pressed" from="StartScreenLayout/PlayGameButton" to="." method="_on_play_game_button_pressed"]
+[connection signal="pressed" from="StartScreenLayout/ConfigButton" to="." method="_on_config_button_pressed"]
+[connection signal="pressed" from="StartScreenLayout/GameHistoryButton" to="." method="_on_game_history_button_pressed"]
+[connection signal="pressed" from="StartScreenLayout/QuitGameButton" to="." method="_on_quit_game_button_pressed"]
+[connection signal="pressed" from="PreGameMenuLayout/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="value_changed" from="GameSettingsLayout/MusicVolumeSlider" to="." method="_on_music_volume_slider_value_changed"]
+[connection signal="value_changed" from="GameSettingsLayout/SFXVolumeSlider" to="." method="_on_sfx_volume_slider_value_changed"]
+[connection signal="pressed" from="MainMenuReturnButton" to="." method="_on_main_menu_return_button_pressed"]
