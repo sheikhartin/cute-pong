@@ -45,14 +45,14 @@ shrink_delay = 5.0
 [node name="PlayerLeftPaddle" parent="Paddles" groups=["Paddles"] instance=ExtResource("2_7ssy6")]
 unique_name_in_owner = true
 position = Vector2(100, 360)
-shrink_delay = 10.0
+shrink_delay = 7.0
 
 [node name="PlayerRightPaddle" parent="Paddles" groups=["Paddles"] instance=ExtResource("2_7ssy6")]
 unique_name_in_owner = true
 position = Vector2(1180, 360)
 player = 3
 custom_texture = ExtResource("3_aeetf")
-shrink_delay = 10.0
+shrink_delay = 7.0
 
 [node name="Boundaries" type="StaticBody2D" parent="." groups=["Boundaries"]]
 
