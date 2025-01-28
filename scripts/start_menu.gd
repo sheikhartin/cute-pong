@@ -69,6 +69,7 @@ func _on_play_game_button_pressed() -> void:
 	start_screen_layout.visible = false
 	main_menu_return_button.show()
 
+	%BattleModeOption.clear()
 	for battle_mode in BATTLE_MODES.keys():
 		%BattleModeOption.add_item(battle_mode)
 
@@ -80,6 +81,7 @@ func _on_play_game_button_pressed() -> void:
 
 	%WinTally.value = _game_profile.win_tally
 
+	%ArenaTextureOption.clear()
 	for arena_name in ARENA_TEXTURES.keys():
 		var thumbnail: Texture2D = generate_thumbnail(ARENA_TEXTURES[arena_name])
 		%ArenaTextureOption.add_icon_item(thumbnail, arena_name)
@@ -90,6 +92,7 @@ func _on_play_game_button_pressed() -> void:
 	if default_arena_index != -1:
 		%ArenaTextureOption.select(default_arena_index)
 
+	%BallTextureOption.clear()
 	for ball_name in BALL_TEXTURES.keys():
 		var thumbnail: Texture2D = generate_thumbnail(BALL_TEXTURES[ball_name])
 		%BallTextureOption.add_icon_item(thumbnail, ball_name)
