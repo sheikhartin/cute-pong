@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+const SMALL_PREVIEW_SIZE: Vector2i = Vector2i(16, 16)
+
 @onready var start_screen_layout: VBoxContainer = %StartScreenLayout
 @onready var pre_game_menu_layout: VBoxContainer = %PreGameMenuLayout
 @onready var game_settings_layout: VBoxContainer = %GameSettingsLayout
@@ -46,6 +48,15 @@ func _adjust_sound_volumes() -> void:
 	)
 
 
+func generate_thumbnail(source_path: String) -> Texture2D:
+	var source_texture: Texture2D = load(source_path)
+	var thumbnail_image: Image = source_texture.get_image()
+	thumbnail_image.resize(
+		SMALL_PREVIEW_SIZE.x, SMALL_PREVIEW_SIZE.y, Image.INTERPOLATE_BILINEAR
+	)
+	return ImageTexture.create_from_image(thumbnail_image)
+
+
 func _on_play_game_button_pressed() -> void:
 	start_screen_layout.visible = false
 	main_menu_return_button.show()
@@ -62,7 +73,8 @@ func _on_play_game_button_pressed() -> void:
 	%WinTally.value = _game_profile.win_tally
 
 	for arena_name in ARENA_TEXTURES.keys():
-		%ArenaTextureOption.add_item(arena_name)
+		var thumbnail: Texture2D = generate_thumbnail(ARENA_TEXTURES[arena_name])
+		%ArenaTextureOption.add_icon_item(thumbnail, arena_name)
 
 	var default_arena_index: int = ARENA_TEXTURES.keys().find(
 		ARENA_TEXTURES.find_key(_game_profile.arena_texture_path)
@@ -71,7 +83,8 @@ func _on_play_game_button_pressed() -> void:
 		%ArenaTextureOption.select(default_arena_index)
 
 	for ball_name in BALL_TEXTURES.keys():
-		%BallTextureOption.add_item(ball_name)
+		var thumbnail: Texture2D = generate_thumbnail(BALL_TEXTURES[ball_name])
+		%BallTextureOption.add_icon_item(thumbnail, ball_name)
 
 	var default_ball_index: int = BALL_TEXTURES.keys().find(
 		BALL_TEXTURES.find_key(_game_profile.ball_texture_path)
