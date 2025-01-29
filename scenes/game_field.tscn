@@ -33,6 +33,7 @@ unique_name_in_owner = true
 process_mode = 3
 stream = ExtResource("9_3d13n")
 autoplay = true
+parameters/looping = true
 
 [node name="GamePauseController" parent="." instance=ExtResource("9_vvusq")]
 z_index = 1
