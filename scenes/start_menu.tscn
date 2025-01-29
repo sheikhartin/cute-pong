@@ -16,6 +16,7 @@ texture = ExtResource("1_ld0t7")
 unique_name_in_owner = true
 stream = ExtResource("4_d6vm0")
 autoplay = true
+parameters/looping = true
 
 [node name="StartScreenLayout" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
