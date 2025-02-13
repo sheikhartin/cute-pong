@@ -101,7 +101,7 @@ func _process_bot_movement(delta: float) -> void:
 	var predicted_position: Vector2 = (
 		_ball.position + ball_direction * distance_to_ball
 	)
-#
+
 	# Add a small random offset to make the bot less perfect
 	var random_offset: Vector2 = Vector2(
 		randf_range(-250, 250), randf_range(-150, 150)
